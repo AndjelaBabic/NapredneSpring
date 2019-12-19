@@ -4,14 +4,6 @@
  * and open the template in the editor.
  */
 package com.nst.dto;
-
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Size;
-
 /**
  *
  * @author Andjela Babic

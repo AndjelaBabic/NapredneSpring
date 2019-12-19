@@ -13,8 +13,9 @@ import org.hibernate.MappingException;
  *
  * @author Andjela Babic
  */
+
 public interface UserService {
 
-    User authenticate(UserDTO user);
+    public User authenticate(UserDTO user);
 
 }

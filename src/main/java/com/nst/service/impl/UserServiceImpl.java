@@ -12,11 +12,13 @@ import com.nst.service.UserService;
 import java.util.Base64;
 import org.hibernate.MappingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Andjela Babic
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
