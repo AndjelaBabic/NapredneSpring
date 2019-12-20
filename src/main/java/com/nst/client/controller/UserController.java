@@ -10,8 +10,12 @@ import com.nst.dto.UserDTO;
 import com.nst.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,14 +30,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public User login(HttpServletRequest request, String username, String password) {
-        
-        UserDTO userDto = new UserDTO();
-        userDto.setUsername(username);
-        userDto.setPassword(password);
-
+    public @ResponseBody Object login(@RequestBody UserDTO userDto) {
         User user = userService.authenticate(userDto);
-        return user;
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
 }
