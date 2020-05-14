@@ -3,6 +3,9 @@
   <persistence-unit name="com_nst_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.nst.domain.User</class>
+    <class>com.nst.domain.Card</class>
+    <class>com.nst.domain.Project</class>
+    <class>com.nst.domain.Comment</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/productivity?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
