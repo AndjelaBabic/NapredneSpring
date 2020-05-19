@@ -5,10 +5,8 @@
  */
 package com.nst.service.impl;
 
-import com.nst.dao.UserDAO;
-import com.nst.domain.User;
-import com.nst.dto.UserDTO;
-import com.nst.service.UserService;
+import com.nst.dao.ListDAO;
+import com.nst.service.ListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +15,8 @@ import org.springframework.stereotype.Service;
  * @author Andjela Babic
  */
 @Service
-public class UserServiceImpl implements UserService {
-
+public class ListServiceImpl implements ListService{
+    
     @Autowired
-    private UserDAO userDAO;
-
-    @Override
-    public User authenticate(UserDTO user) {
-       return userDAO.login(user.getEmail(), user.getPassword());
-    }
-
+    ListDAO repository; 
 }

@@ -5,8 +5,7 @@
  */
 package com.nst.client.controller;
 
-import com.nst.domain.User;
-import com.nst.dto.UserDTO;
+import com.nst.service.ListService;
 import com.nst.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -25,15 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 @CrossOrigin
-public class UserController {
-
+public class ListController {
+    
     @Autowired
-    private UserService userService;
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public @ResponseBody Object login(@RequestBody UserDTO userDto) {
-        User user = userService.authenticate(userDto);
-        return ResponseEntity.status(HttpStatus.OK).body(user);
-    }
-
+    private ListService service; 
 }

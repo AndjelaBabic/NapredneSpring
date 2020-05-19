@@ -6,7 +6,7 @@
 package com.nst.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,30 +15,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Andjela Babic
  */
 @Entity
-@Table(name = "comment")
+@Table(name = "list")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c")
-    , @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id")
-    , @NamedQuery(name = "Comment.findByText", query = "SELECT c FROM Comment c WHERE c.text = :text")
-    , @NamedQuery(name = "Comment.findByDate", query = "SELECT c FROM Comment c WHERE c.date = :date")})
-public class Comment implements Serializable {
+    @NamedQuery(name = "List.findAll", query = "SELECT l FROM List l")
+    , @NamedQuery(name = "List.findById", query = "SELECT l FROM List l WHERE l.id = :id")
+    , @NamedQuery(name = "List.findByTitle", query = "SELECT l FROM List l WHERE l.title = :title")})
+public class List implements Serializable {
 
     @Size(max = 50)
-    @Column(name = "text")
-    private String text;
+    @Column(name = "title")
+    private String title;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,17 +45,16 @@ public class Comment implements Serializable {
     @NotNull
     @Column(name = "id")
     private Integer id;
-    @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
+    @JoinColumn(name = "board_id", referencedColumnName = "id")
     @ManyToOne
-    private Card cardId;
+    private Board boardId;
+    @OneToMany(mappedBy = "listId")
+    private Collection<Card> cardCollection;
 
-    public Comment() {
+    public List() {
     }
 
-    public Comment(Integer id) {
+    public List(Integer id) {
         this.id = id;
     }
 
@@ -69,20 +67,21 @@ public class Comment implements Serializable {
     }
 
 
-    public Date getDate() {
-        return date;
+    public Board getBoardId() {
+        return boardId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBoardId(Board boardId) {
+        this.boardId = boardId;
     }
 
-    public Card getCardId() {
-        return cardId;
+    @XmlTransient
+    public Collection<Card> getCardCollection() {
+        return cardCollection;
     }
 
-    public void setCardId(Card cardId) {
-        this.cardId = cardId;
+    public void setCardCollection(Collection<Card> cardCollection) {
+        this.cardCollection = cardCollection;
     }
 
     @Override
@@ -95,10 +94,10 @@ public class Comment implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Comment)) {
+        if (!(object instanceof List)) {
             return false;
         }
-        Comment other = (Comment) object;
+        List other = (List) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -107,15 +106,15 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "com.nst.domain.Comment[ id=" + id + " ]";
+        return "com.nst.domain.List[ id=" + id + " ]";
     }
 
-    public String getText() {
-        return text;
+    public String getTitle() {
+        return title;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTitle(String title) {
+        this.title = title;
     }
     
 }

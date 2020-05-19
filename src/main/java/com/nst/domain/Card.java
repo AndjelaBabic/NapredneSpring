@@ -43,12 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Card.findByLabel", query = "SELECT c FROM Card c WHERE c.label = :label")})
 public class Card implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
-    private Integer id;
     @Size(max = 50)
     @Column(name = "name")
     private String name;
@@ -61,12 +55,22 @@ public class Card implements Serializable {
     @Size(max = 50)
     @Column(name = "priority")
     private String priority;
-    @Column(name = "due_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dueDate;
     @Size(max = 50)
     @Column(name = "label")
     private String label;
+    @JoinColumn(name = "list_id", referencedColumnName = "id")
+    @ManyToOne
+    private com.nst.domain.List listId;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "due_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dueDate;
     @OneToMany(mappedBy = "cardId")
     private List<Comment> commentList;
     @JoinColumn(name = "project_id", referencedColumnName = "id")
@@ -88,37 +92,6 @@ public class Card implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
 
     public Date getDueDate() {
         return dueDate;
@@ -128,13 +101,6 @@ public class Card implements Serializable {
         this.dueDate = dueDate;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
 
     @XmlTransient
     public List<Comment> getCommentList() {
@@ -176,6 +142,52 @@ public class Card implements Serializable {
     @Override
     public String toString() {
         return "com.nst.domain.Card[ id=" + id + " ]";
+    }
+    public com.nst.domain.List getListId() {
+        return listId;
+    }
+    public void setListId(com.nst.domain.List listId) {
+        this.listId = listId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
     
 }

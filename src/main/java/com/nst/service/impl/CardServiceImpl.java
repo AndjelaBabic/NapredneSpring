@@ -5,26 +5,18 @@
  */
 package com.nst.service.impl;
 
-import com.nst.dao.UserDAO;
-import com.nst.domain.User;
-import com.nst.dto.UserDTO;
-import com.nst.service.UserService;
+import com.nst.dao.CardDAO;
+import com.nst.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 /**
  *
  * @author Andjela Babic
  */
 @Service
-public class UserServiceImpl implements UserService {
-
+public class CardServiceImpl implements CardService{
+    
     @Autowired
-    private UserDAO userDAO;
-
-    @Override
-    public User authenticate(UserDTO user) {
-       return userDAO.login(user.getEmail(), user.getPassword());
-    }
-
+    CardDAO repository; 
+    
 }

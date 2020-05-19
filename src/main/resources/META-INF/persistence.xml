@@ -6,6 +6,8 @@
     <class>com.nst.domain.Card</class>
     <class>com.nst.domain.Project</class>
     <class>com.nst.domain.Comment</class>
+    <class>com.nst.domain.Board</class>
+    <class>com.nst.domain.List</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/productivity?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
