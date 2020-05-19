@@ -15,4 +15,8 @@ import com.nst.dto.CardDTO;
 public interface CardService {
     
     public void addCard(CardDTO card);
+    
+    public void editCardTitle(CardDTO card); 
+    
+    public void editCardList(CardDTO card); 
 }

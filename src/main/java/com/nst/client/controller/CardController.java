@@ -37,4 +37,25 @@ public class CardController {
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error.");
         }
     }
+    
+    @RequestMapping(value = "/editCardTitle", method = RequestMethod.PUT)
+    public @ResponseBody Object editCardTitle(@RequestBody CardDTO card) {
+        try {
+            service.editCardTitle(card);    
+            return ResponseEntity.status(HttpStatus.OK).body("Successfully edited card title");
+        } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during edditing card");
+        }
+    }
+    
+    @RequestMapping(value = "/editCardList", method = RequestMethod.PUT)
+    public @ResponseBody Object editCardList(@RequestBody CardDTO card) {
+        try {
+            System.out.println(card);
+            service.editCardList(card);    
+            return ResponseEntity.status(HttpStatus.OK).body("Successfully edited card list");
+        } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during edditing card");
+        }
+    }
 }

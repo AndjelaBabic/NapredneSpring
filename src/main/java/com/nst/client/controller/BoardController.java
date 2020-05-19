@@ -36,7 +36,7 @@ public class BoardController {
             service.addBoard(board);    
             return ResponseEntity.status(HttpStatus.OK).body("Successfuly inserted");
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error.");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while inserting Board");
         }
     }
 }

@@ -71,6 +71,11 @@ public class BoardDTO {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "BoardDTO{" + "boardId=" + boardId + ", title=" + title + ", modified=" + modified + ", created=" + created + ", userId=" + userId + '}';
+    }
     
     
 }

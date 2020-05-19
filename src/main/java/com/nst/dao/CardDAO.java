@@ -6,6 +6,7 @@
 package com.nst.dao;
 
 import com.nst.domain.Card;
+import com.nst.domain.List;
 import java.util.Date;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,4 +32,15 @@ public interface CardDAO extends JpaRepository<Card, Integer> {
             @Param("description") String description, @Param("priority") String priority,
             @Param("duedate") Date duedate, @Param("label") String label,
             @Param("listid") String listid);
+    
+    @Transactional
+    @Modifying
+    @Query("UPDATE Card c SET c.title=?1 WHERE c.cardid=?2")
+    void editCardTitle(String title, String cardid);
+    
+    @Transactional
+    @Modifying
+    @Query("UPDATE Card c SET c.listid=?1 WHERE c.cardid=?2")
+    void editCardList(List list, String cardid);
+    
 }

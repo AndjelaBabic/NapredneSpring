@@ -28,10 +28,8 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void addBoard(BoardDTO board) {
         Date now = new Date();
-        System.out.println("Board id "+board.getBoardId());
-        System.out.println(board.getTitle());
-         System.out.println(board.getUserId());
-       repository.addBoard(board.getBoardId(), board.getTitle(),
+        repository.addBoard(board.getBoardId(), board.getTitle(),
                now, now, board.getUserId());
     }
+    
 }

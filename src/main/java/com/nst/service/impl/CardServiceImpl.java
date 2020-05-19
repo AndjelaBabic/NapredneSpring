@@ -6,6 +6,7 @@
 package com.nst.service.impl;
 
 import com.nst.dao.CardDAO;
+import com.nst.domain.List;
 import com.nst.dto.CardDTO;
 import com.nst.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,17 @@ public class CardServiceImpl implements CardService{
     public void addCard(CardDTO card) {
         repository.addCard(card.getCardid(), card.getTitle(), card.getDescription(), card.getPriority(),
                 card.getDuedate(), card.getLabel(), card.getListid());
+    }
+
+    @Override
+    public void editCardTitle(CardDTO card) {
+        repository.editCardTitle(card.getTitle(), card.getCardid());
+    }
+
+    @Override
+    public void editCardList(CardDTO card) {
+        List list = new List(card.getListid()); 
+        repository.editCardList(list, card.getCardid());
     }
     
 }

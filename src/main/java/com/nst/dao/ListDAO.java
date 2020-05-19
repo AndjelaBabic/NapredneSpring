@@ -32,4 +32,9 @@ public interface ListDAO extends JpaRepository<List, Integer> {
             nativeQuery = true)
     void addList(@Param("listid") String listid, @Param("title") String title, 
             @Param("boardid") String boardid);
+    
+    @Transactional
+    @Modifying
+    @Query("UPDATE List l SET l.title=?1 WHERE l.listid=?2")
+    void editListTitle(String title, String listid);
 }

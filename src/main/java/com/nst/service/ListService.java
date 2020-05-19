@@ -17,4 +17,5 @@ public interface ListService {
  
     public java.util.List<List> getAllListsForTheBoard(String boardid);
     public void addList(ListDTO list);
+    public void editListTitle(ListDTO list); 
 }
