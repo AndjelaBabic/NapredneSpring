@@ -37,5 +37,9 @@ public class CardServiceImpl implements CardService{
         List list = new List(card.getListid()); 
         repository.editCardList(list, card.getCardid());
     }
-    
+
+    @Override
+    public void deleteCard(CardDTO card) {
+        repository.deleteCard(card.getCardid());
+    }
 }

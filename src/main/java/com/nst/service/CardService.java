@@ -18,5 +18,7 @@ public interface CardService {
     
     public void editCardTitle(CardDTO card); 
     
-    public void editCardList(CardDTO card); 
+    public void editCardList(CardDTO card);
+    
+    public void deleteCard(CardDTO card); 
 }

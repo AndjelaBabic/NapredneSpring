@@ -43,4 +43,9 @@ public interface CardDAO extends JpaRepository<Card, Integer> {
     @Query("UPDATE Card c SET c.listid=?1 WHERE c.cardid=?2")
     void editCardList(List list, String cardid);
     
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Card c WHERE c.cardid=?1")
+    void deleteCard(String cardid);
+    
 }

@@ -52,7 +52,7 @@ public class ListController {
         }
     }
     
-     @RequestMapping(value = "/editListTitle", method = RequestMethod.PUT)
+    @RequestMapping(value = "/editListTitle", method = RequestMethod.PUT)
     public @ResponseBody Object editListTitle(@RequestBody ListDTO list) {
         try {
             System.out.println(list);
@@ -60,6 +60,17 @@ public class ListController {
             return ResponseEntity.status(HttpStatus.OK).body("Successfully edited list");
         } catch (Exception e) {
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during list edit");
+        }
+    }
+    
+     @RequestMapping(value = "/deleteList", method = RequestMethod.DELETE)
+    public @ResponseBody Object deleteList(@RequestBody ListDTO list) {
+        try {
+            System.out.println(list);
+            service.deleteList(list);    
+            return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted list");
+        } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during list delete");
         }
     }
 

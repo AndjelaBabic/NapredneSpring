@@ -6,6 +6,7 @@
 package com.nst.client.controller;
 import com.nst.dto.BoardDTO;
 import com.nst.dto.CardDTO;
+import com.nst.dto.ListDTO;
 import com.nst.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,17 @@ public class CardController {
             return ResponseEntity.status(HttpStatus.OK).body("Successfully edited card list");
         } catch (Exception e) {
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during edditing card");
+        }
+    }
+    
+    @RequestMapping(value = "/deleteCard", method = RequestMethod.DELETE)
+    public @ResponseBody Object deleteCard(@RequestBody CardDTO card) {
+        try {
+            System.out.println(card);
+            service.deleteCard(card);    
+            return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted card");
+        } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during card delete");
         }
     }
 }

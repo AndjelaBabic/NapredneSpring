@@ -36,4 +36,9 @@ public class ListServiceImpl implements ListService{
     public void editListTitle(ListDTO list) {
         repository.editListTitle(list.getTitle(), list.getListid());
     }
+
+    @Override
+    public void deleteList(ListDTO list) {
+        repository.deleteList(list.getListid());
+    }
 }

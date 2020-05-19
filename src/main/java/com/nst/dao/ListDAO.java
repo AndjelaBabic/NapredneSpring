@@ -37,4 +37,9 @@ public interface ListDAO extends JpaRepository<List, Integer> {
     @Modifying
     @Query("UPDATE List l SET l.title=?1 WHERE l.listid=?2")
     void editListTitle(String title, String listid);
+    
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM List l WHERE l.listid=?1")
+    void deleteList(String listid);
 }
