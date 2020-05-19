@@ -6,6 +6,7 @@
 package com.nst.service.impl;
 
 import com.nst.dao.ListDAO;
+import com.nst.domain.Board;
 import com.nst.dto.ListDTO;
 import com.nst.service.ListService;
 import java.util.List;
@@ -24,7 +25,8 @@ public class ListServiceImpl implements ListService{
 
     @Override
     public List<com.nst.domain.List> getAllListsForTheBoard(String boardid) {
-        return repository.findAll(); 
+        Board board = new Board(boardid);
+        return repository.getAllListsForTheBoard(board);
     }
 
     @Override

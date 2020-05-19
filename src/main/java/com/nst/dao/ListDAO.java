@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.nst.dao;
+import com.nst.domain.Board;
 import com.nst.domain.List;
 import com.nst.domain.User;
 import java.util.Date;
@@ -21,8 +22,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ListDAO extends JpaRepository<List, Integer> {
     
-    @Query("SELECT l FROM List l")
-    java.util.List<List> getAllListsForTheBoard(String boardId);
+    @Query("SELECT l FROM List l WHERE l.boardid = ?1")
+    java.util.List<List> getAllListsForTheBoard(Board board);
 
     @Transactional
     @Modifying

@@ -5,8 +5,10 @@
  */
 package com.nst.dao;
 
+import com.nst.domain.Board;
 import com.nst.domain.Card;
 import com.nst.domain.List;
+import com.nst.domain.User;
 import java.util.Date;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +23,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CardDAO extends JpaRepository<Card, Integer> {
+    
+    @Query("SELECT c FROM Card c")
+    java.util.List<Card> getAllCards();
     
     @Transactional
     @Modifying

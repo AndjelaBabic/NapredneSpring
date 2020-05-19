@@ -5,6 +5,7 @@
  */
 package com.nst.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -63,6 +64,7 @@ public class Card implements Serializable {
     private String label;
     @JoinColumn(name = "listid", referencedColumnName = "listid")
     @ManyToOne
+    @JsonIgnore
     private List listid;
 
     public Card() {

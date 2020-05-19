@@ -7,6 +7,8 @@ package com.nst.service;
 
 import com.nst.domain.Board;
 import com.nst.dto.BoardDTO;
+import com.nst.dto.UserDTO;
+import java.util.List;
 
 /**
  *
@@ -15,4 +17,6 @@ import com.nst.dto.BoardDTO;
 public interface BoardService {
     
     public void addBoard(BoardDTO board);
+    
+    public List<Board> getBoardsForUser(int userid); 
 }

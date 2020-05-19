@@ -12,6 +12,7 @@ import com.nst.dto.BoardDTO;
 import com.nst.dto.UserDTO;
 import com.nst.service.BoardService;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,12 @@ public class BoardServiceImpl implements BoardService{
         Date now = new Date();
         repository.addBoard(board.getBoardId(), board.getTitle(),
                now, now, board.getUserId());
+    }
+
+    @Override
+    public List<Board> getBoardsForUser(int userid) {
+        User currentUser = new User(userid); 
+        return repository.getAllBoardsByUsedId(currentUser);
     }
     
 }

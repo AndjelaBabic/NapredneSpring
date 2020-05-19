@@ -5,6 +5,7 @@
  */
 package com.nst.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -61,6 +62,7 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
     @OneToMany(mappedBy = "userid")
+    @JsonIgnore
     private List<Board> boardList;
 
     public User() {

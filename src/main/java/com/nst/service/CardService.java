@@ -5,8 +5,10 @@
  */
 package com.nst.service;
 
+import com.nst.domain.Card;
 import com.nst.dto.BoardDTO;
 import com.nst.dto.CardDTO;
+import java.util.List;
 
 /**
  *
@@ -21,4 +23,6 @@ public interface CardService {
     public void editCardList(CardDTO card);
     
     public void deleteCard(CardDTO card); 
+    
+    public List<Card> getAllCards(); 
 }

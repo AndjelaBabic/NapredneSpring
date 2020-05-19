@@ -23,6 +23,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardDAO extends JpaRepository<Board, Integer> {
     
+    @Query("SELECT b FROM Board b WHERE b.userid = ?1")
+    java.util.List<Board> getAllBoardsByUsedId(User user);
+    
     @Transactional
     @Modifying
     @Query(value=

@@ -6,6 +6,7 @@
 package com.nst.service.impl;
 
 import com.nst.dao.CardDAO;
+import com.nst.domain.Card;
 import com.nst.domain.List;
 import com.nst.dto.CardDTO;
 import com.nst.service.CardService;
@@ -41,5 +42,10 @@ public class CardServiceImpl implements CardService{
     @Override
     public void deleteCard(CardDTO card) {
         repository.deleteCard(card.getCardid());
+    }
+
+    @Override
+    public java.util.List<Card> getAllCards() {
+        return repository.getAllCards();
     }
 }
