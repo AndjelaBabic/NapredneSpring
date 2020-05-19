@@ -35,5 +35,16 @@ public class UserController {
         User user = userService.authenticate(userDto);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
+    
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public @ResponseBody Object signup(@RequestBody UserDTO userDto) {
+         try {
+            userService.insertUser(userDto);
+            return ResponseEntity.status(HttpStatus.OK).body("User sucessfully inserted ");
+        } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while inserting User");
+        }
+        
+    }
 
 }

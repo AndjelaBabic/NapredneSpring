@@ -20,11 +20,17 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserDAO repository;
 
     @Override
     public User authenticate(UserDTO user) {
-       return userDAO.login(user.getEmail(), user.getPassword());
+       return repository.login(user.getEmail(), user.getPassword());
+    }
+
+    @Override
+    public void insertUser(UserDTO user) {
+        // TODO Check if user with that email exists 
+        repository.insertUser(user.getFullname(), user.getEmail(), user.getPassword());
     }
 
 }

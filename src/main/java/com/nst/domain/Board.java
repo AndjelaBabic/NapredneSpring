@@ -40,6 +40,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Board.findByModified", query = "SELECT b FROM Board b WHERE b.modified = :modified")})
 public class Board implements Serializable {
 
+    @Size(max = 50)
+    @Column(name = "title")
+    private String title;
+    @OneToMany(mappedBy = "boardid")
+    private List<User> userList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -47,9 +53,6 @@ public class Board implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "boardid")
     private String boardid;
-    @Size(max = 50)
-    @Column(name = "title")
-    private String title;
     @Column(name = "created")
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
@@ -77,13 +80,6 @@ public class Board implements Serializable {
         this.boardid = boardid;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public Date getCreated() {
         return created;
@@ -141,6 +137,23 @@ public class Board implements Serializable {
     @Override
     public String toString() {
         return "com.nst.domain.Board[ boardid=" + boardid + " ]";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @XmlTransient
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
     
 }

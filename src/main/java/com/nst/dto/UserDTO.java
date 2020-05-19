@@ -11,22 +11,11 @@ package com.nst.dto;
 public class UserDTO {
     
     private Integer id;
-    private String name;
-    private String surname;
-    private String username; 
+    private String fullname;
     private String email;
     private String password;
     
     public UserDTO(){
-    }
-
-    public UserDTO(Integer id, String name, String surname, String username, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.username = username; 
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
     }
 
     public Integer getId() {
@@ -37,29 +26,18 @@ public class UserDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public UserDTO(Integer id, String fullname, String email, String password) {
+        this.id = id;
+        this.fullname = fullname;
+        this.email = email;
+        this.password = password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFullname() {
+        return fullname;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  
 
     public String getEmail() {
         return email;
@@ -79,8 +57,9 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", username=" + username + ", email=" + email + ", password=" + password + '}';
+        return "UserDTO{" + "id=" + id + ", fullname=" + fullname + ", email=" + email + ", password=" + password + '}';
     }
+
     
     
     
