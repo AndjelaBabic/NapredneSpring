@@ -5,10 +5,52 @@
  */
 package com.nst.dto;
 
+import com.nst.domain.Board;
+import com.nst.domain.Card;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+
 /**
  *
  * @author Andjela Babic
  */
 public class ListDTO {
+    
+    private String listid;
+    private String title;
+    private String boardid;
+
+    public String getListid() {
+        return listid;
+    }
+
+    public void setListid(String listid) {
+        this.listid = listid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBoardid() {
+        return boardid;
+    }
+
+    public void setBoardid(String boardid) {
+        this.boardid = boardid;
+    }
+
+    @Override
+    public String toString() {
+        return "ListDTO{" + "listid=" + listid + ", title=" + title + ", boardid=" + boardid + '}';
+    }
+    
     
 }

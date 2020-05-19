@@ -6,7 +6,6 @@
 package com.nst.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,63 +30,70 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "List.findAll", query = "SELECT l FROM List l")
-    , @NamedQuery(name = "List.findById", query = "SELECT l FROM List l WHERE l.id = :id")
+    , @NamedQuery(name = "List.findByListid", query = "SELECT l FROM List l WHERE l.listid = :listid")
     , @NamedQuery(name = "List.findByTitle", query = "SELECT l FROM List l WHERE l.title = :title")})
 public class List implements Serializable {
-
-    @Size(max = 50)
-    @Column(name = "title")
-    private String title;
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id")
-    private Integer id;
-    @JoinColumn(name = "board_id", referencedColumnName = "id")
+    @Size(min = 1, max = 50)
+    @Column(name = "listid")
+    private String listid;
+    @Size(max = 50)
+    @Column(name = "title")
+    private String title;
+    @JoinColumn(name = "boardid", referencedColumnName = "boardid")
     @ManyToOne
-    private Board boardId;
-    @OneToMany(mappedBy = "listId")
-    private Collection<Card> cardCollection;
+    private Board boardid;
+    @OneToMany(mappedBy = "listid")
+    private java.util.List<Card> cardList;
 
     public List() {
     }
 
-    public List(Integer id) {
-        this.id = id;
+    public List(String listid) {
+        this.listid = listid;
     }
 
-    public Integer getId() {
-        return id;
+    public String getListid() {
+        return listid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setListid(String listid) {
+        this.listid = listid;
     }
 
-
-    public Board getBoardId() {
-        return boardId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBoardId(Board boardId) {
-        this.boardId = boardId;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Board getBoardid() {
+        return boardid;
+    }
+
+    public void setBoardid(Board boardid) {
+        this.boardid = boardid;
     }
 
     @XmlTransient
-    public Collection<Card> getCardCollection() {
-        return cardCollection;
+    public java.util.List<Card> getCardList() {
+        return cardList;
     }
 
-    public void setCardCollection(Collection<Card> cardCollection) {
-        this.cardCollection = cardCollection;
+    public void setCardList(java.util.List<Card> cardList) {
+        this.cardList = cardList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (listid != null ? listid.hashCode() : 0);
         return hash;
     }
 
@@ -98,7 +104,7 @@ public class List implements Serializable {
             return false;
         }
         List other = (List) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.listid == null && other.listid != null) || (this.listid != null && !this.listid.equals(other.listid))) {
             return false;
         }
         return true;
@@ -106,15 +112,7 @@ public class List implements Serializable {
 
     @Override
     public String toString() {
-        return "com.nst.domain.List[ id=" + id + " ]";
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        return "com.nst.domain.List[ listid=" + listid + " ]";
     }
     
 }

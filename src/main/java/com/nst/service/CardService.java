@@ -5,10 +5,14 @@
  */
 package com.nst.service;
 
+import com.nst.dto.BoardDTO;
+import com.nst.dto.CardDTO;
+
 /**
  *
  * @author Andjela Babic
  */
 public interface CardService {
     
+    public void addCard(CardDTO card);
 }

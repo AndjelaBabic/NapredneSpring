@@ -5,6 +5,9 @@
  */
 package com.nst.client.controller;
 
+import com.nst.domain.User;
+import com.nst.dto.BoardDTO;
+import com.nst.dto.UserDTO;
 import com.nst.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,4 +29,14 @@ public class BoardController {
     
     @Autowired
     private BoardService service; 
+    
+    @RequestMapping(value = "/addBoard", method = RequestMethod.POST)
+    public @ResponseBody Object addBoard(@RequestBody BoardDTO board) {
+        try {
+            service.addBoard(board);    
+            return ResponseEntity.status(HttpStatus.OK).body("Successfuly inserted");
+        } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error.");
+        }
+    }
 }

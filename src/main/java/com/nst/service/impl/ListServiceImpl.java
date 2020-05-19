@@ -6,7 +6,9 @@
 package com.nst.service.impl;
 
 import com.nst.dao.ListDAO;
+import com.nst.dto.ListDTO;
 import com.nst.service.ListService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,14 @@ public class ListServiceImpl implements ListService{
     
     @Autowired
     ListDAO repository; 
+
+    @Override
+    public List<com.nst.domain.List> getAllListsForTheBoard(String boardid) {
+        return repository.findAll(); 
+    }
+
+    @Override
+    public void addList(ListDTO list) {
+        repository.addList(list.getListid(), list.getTitle(), list.getBoardid());
+    }
 }

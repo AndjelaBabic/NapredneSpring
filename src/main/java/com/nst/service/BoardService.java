@@ -5,10 +5,14 @@
  */
 package com.nst.service;
 
+import com.nst.domain.Board;
+import com.nst.dto.BoardDTO;
+
 /**
  *
  * @author Andjela Babic
  */
 public interface BoardService {
     
+    public void addBoard(BoardDTO board);
 }

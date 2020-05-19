@@ -5,10 +5,16 @@
  */
 package com.nst.service;
 
+import com.nst.domain.List;
+import com.nst.dto.BoardDTO;
+import com.nst.dto.ListDTO;
+
 /**
  *
  * @author Andjela Babic
  */
 public interface ListService {
-    
+ 
+    public java.util.List<List> getAllListsForTheBoard(String boardid);
+    public void addList(ListDTO list);
 }

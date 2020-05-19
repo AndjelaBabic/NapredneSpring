@@ -6,8 +6,8 @@
 package com.nst.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,56 +34,55 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Board.findAll", query = "SELECT b FROM Board b")
-    , @NamedQuery(name = "Board.findById", query = "SELECT b FROM Board b WHERE b.id = :id")
+    , @NamedQuery(name = "Board.findByBoardid", query = "SELECT b FROM Board b WHERE b.boardid = :boardid")
     , @NamedQuery(name = "Board.findByTitle", query = "SELECT b FROM Board b WHERE b.title = :title")
-    , @NamedQuery(name = "Board.findByModified", query = "SELECT b FROM Board b WHERE b.modified = :modified")
-    , @NamedQuery(name = "Board.findByCreated", query = "SELECT b FROM Board b WHERE b.created = :created")})
+    , @NamedQuery(name = "Board.findByCreated", query = "SELECT b FROM Board b WHERE b.created = :created")
+    , @NamedQuery(name = "Board.findByModified", query = "SELECT b FROM Board b WHERE b.modified = :modified")})
 public class Board implements Serializable {
-
-    @Size(max = 50)
-    @Column(name = "title")
-    private String title;
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "modified")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modified;
+    @Size(min = 1, max = 50)
+    @Column(name = "boardid")
+    private String boardid;
+    @Size(max = 50)
+    @Column(name = "title")
+    private String title;
     @Column(name = "created")
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    @OneToMany(mappedBy = "boardId")
-    private Collection<List> listCollection;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Column(name = "modified")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modified;
+    @OneToMany(mappedBy = "boardid")
+    private List<com.nst.domain.List> listList;
+    @JoinColumn(name = "userid", referencedColumnName = "id")
     @ManyToOne
-    private User userId;
+    private User userid;
 
     public Board() {
     }
 
-    public Board(Integer id) {
-        this.id = id;
+    public Board(String boardid) {
+        this.boardid = boardid;
     }
 
-    public Integer getId() {
-        return id;
+    public String getBoardid() {
+        return boardid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBoardid(String boardid) {
+        this.boardid = boardid;
     }
 
-
-    public Date getModified() {
-        return modified;
+    public String getTitle() {
+        return title;
     }
 
-    public void setModified(Date modified) {
-        this.modified = modified;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getCreated() {
@@ -94,27 +93,35 @@ public class Board implements Serializable {
         this.created = created;
     }
 
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
     @XmlTransient
-    public Collection<List> getListCollection() {
-        return listCollection;
+    public List<com.nst.domain.List> getListList() {
+        return listList;
     }
 
-    public void setListCollection(Collection<List> listCollection) {
-        this.listCollection = listCollection;
+    public void setListList(List<com.nst.domain.List> listList) {
+        this.listList = listList;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUserid() {
+        return userid;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUserid(User userid) {
+        this.userid = userid;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (boardid != null ? boardid.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +132,7 @@ public class Board implements Serializable {
             return false;
         }
         Board other = (Board) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.boardid == null && other.boardid != null) || (this.boardid != null && !this.boardid.equals(other.boardid))) {
             return false;
         }
         return true;
@@ -133,15 +140,7 @@ public class Board implements Serializable {
 
     @Override
     public String toString() {
-        return "com.nst.domain.Board[ id=" + id + " ]";
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        return "com.nst.domain.Board[ boardid=" + boardid + " ]";
     }
     
 }
