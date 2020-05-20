@@ -9,8 +9,10 @@ import com.nst.domain.User;
 import com.nst.dto.CardDTO;
 import com.nst.dto.ListDTO;
 import com.nst.dto.UserDTO;
+import com.nst.payload.ApiResponse;
 import com.nst.service.ListService;
 import com.nst.service.UserService;
+import com.nst.util.Messages;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,47 +32,48 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class ListController {
-    
+
     @Autowired
     private ListService service;
-    
-    
+
     @RequestMapping(value = "/getlists", method = RequestMethod.GET)
-    public @ResponseBody Object getListsForTheBoard(@RequestParam String boardId) {
-         List<com.nst.domain.List> lists = service.getAllListsForTheBoard(boardId);
+    public @ResponseBody
+    Object getListsForTheBoard(@RequestParam String boardId) {
+        List<com.nst.domain.List> lists = service.getAllListsForTheBoard(boardId);
         return ResponseEntity.status(HttpStatus.OK).body(lists);
     }
-    
+
     @RequestMapping(value = "/addList", method = RequestMethod.POST)
-    public @ResponseBody Object addList(@RequestBody ListDTO list) {
+    public @ResponseBody
+    Object addList(@RequestBody ListDTO list) {
         try {
-            System.out.println("list "+list.getBoardid() + " listid "+ list.getListid());
-            service.addList(list);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfully inserted");
+            service.addList(list);
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "List " + Messages.SUCCESS_INSERT));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_INSERT + " list"));
         }
     }
-    
+
     @RequestMapping(value = "/editListTitle", method = RequestMethod.PUT)
-    public @ResponseBody Object editListTitle(@RequestBody ListDTO list) {
+    public @ResponseBody
+    Object editListTitle(@RequestBody ListDTO list) {
         try {
             System.out.println(list);
-            service.editListTitle(list);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfully edited list");
+            service.editListTitle(list);
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_UPDATE + " list"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during list edit");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_UPDATE + " list"));
         }
     }
-    
-     @RequestMapping(value = "/deleteList", method = RequestMethod.DELETE)
-    public @ResponseBody Object deleteList(@RequestBody ListDTO list) {
+
+    @RequestMapping(value = "/deleteList", method = RequestMethod.DELETE)
+    public @ResponseBody
+    Object deleteList(@RequestBody ListDTO list) {
         try {
-            System.out.println(list);
-            service.deleteList(list);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted list");
+            service.deleteList(list);
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_DELETE + " list"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during list delete");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse((false), Messages.ERROR_DELETE + " list"));
         }
     }
 

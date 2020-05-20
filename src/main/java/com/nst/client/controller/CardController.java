@@ -9,7 +9,9 @@ import com.nst.domain.Card;
 import com.nst.dto.BoardDTO;
 import com.nst.dto.CardDTO;
 import com.nst.dto.ListDTO;
+import com.nst.payload.ApiResponse;
 import com.nst.service.CardService;
+import com.nst.util.Messages;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +40,7 @@ public class CardController {
             List<Card> result = service.getAllCards();    
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while inserting Board");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error getting cards");
         }
     }
     
@@ -47,9 +49,9 @@ public class CardController {
         try {
             System.out.println(card);
             service.addCard(card);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfully inserted");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Card "+Messages.SUCCESS_INSERT ));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error.");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(true, Messages.ERROR_INSERT + "card" ));
         }
     }
     
@@ -57,31 +59,29 @@ public class CardController {
     public @ResponseBody Object editCardTitle(@RequestBody CardDTO card) {
         try {
             service.editCardTitle(card);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfully edited card title");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_UPDATE + " card title"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during edditing card");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_UPDATE + " card title"));
         }
     }
     
     @RequestMapping(value = "/editCardList", method = RequestMethod.PUT)
     public @ResponseBody Object editCardList(@RequestBody CardDTO card) {
         try {
-            System.out.println(card);
             service.editCardList(card);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfully edited card list");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_UPDATE + " card list"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during edditing card");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_UPDATE + " card list"));
         }
     }
     
     @RequestMapping(value = "/deleteCard", method = RequestMethod.DELETE)
     public @ResponseBody Object deleteCard(@RequestBody CardDTO card) {
         try {
-            System.out.println(card);
-            service.deleteCard(card);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted card");
+            service.deleteCard(card);   
+              return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_DELETE + " card"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured during card delete");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse((false), Messages.ERROR_DELETE + " card")); 
         }
     }
 }

@@ -9,6 +9,7 @@ import com.nst.domain.Board;
 import com.nst.domain.User;
 import com.nst.dto.BoardDTO;
 import com.nst.dto.UserDTO;
+import com.nst.payload.ApiResponse;
 import com.nst.service.BoardService;
 import java.math.BigInteger;
 import java.util.List;
@@ -48,9 +49,9 @@ public class BoardController {
     public @ResponseBody Object addBoard(@RequestBody BoardDTO board) {
         try {
             service.addBoard(board);    
-            return ResponseEntity.status(HttpStatus.OK).body("Successfuly inserted");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Success"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while inserting Board");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, "Error while inserting Board"));
         }
     }
 }
