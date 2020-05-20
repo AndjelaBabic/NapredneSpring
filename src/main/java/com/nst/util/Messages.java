@@ -17,5 +17,6 @@ public interface Messages {
     public final String ERROR_UPDATE = "Error occured during edit of a ";
     public final String SUCCESS_DELETE = "Successfully deleted "; 
     public final String ERROR_DELETE = "Error occured during deleting of a ";
+    public final String ERROR_GET = "Error occured during fetching of a ";
     
 }

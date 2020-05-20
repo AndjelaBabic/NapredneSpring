@@ -11,8 +11,10 @@ import com.nst.dto.BoardDTO;
 import com.nst.dto.UserDTO;
 import com.nst.payload.ApiResponse;
 import com.nst.service.BoardService;
+import com.nst.util.Messages;
 import java.math.BigInteger;
 import java.util.List;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +43,7 @@ public class BoardController {
             List<Board> result = service.getBoardsForUser(userid);    
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while inserting Board");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_GET + " boards"));
         }
     }
     

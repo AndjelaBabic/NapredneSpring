@@ -32,7 +32,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody Object login(@RequestBody UserDTO userDto) {
-        User user = userService.authenticate(userDto);
+        UserDTO user = userService.authenticate(userDto);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
     

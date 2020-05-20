@@ -31,6 +31,7 @@ public class BoardDTO {
     private Date modified;
     private Date created;
     private int userId;
+    private String[] lists;  
 
     public String getBoardId() {
         return boardId;
@@ -72,6 +73,15 @@ public class BoardDTO {
         this.userId = userId;
     }
 
+    public String[] getLists() {
+        return lists;
+    }
+
+    public void setLists(String[] lists) {
+        this.lists = lists;
+    }
+
+    
     @Override
     public String toString() {
         return "BoardDTO{" + "boardId=" + boardId + ", title=" + title + ", modified=" + modified + ", created=" + created + ", userId=" + userId + '}';

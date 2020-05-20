@@ -16,7 +16,7 @@ import org.hibernate.MappingException;
 
 public interface UserService {
 
-    public User authenticate(UserDTO user);
+    public UserDTO authenticate(UserDTO user);
     
     public void insertUser(UserDTO user); 
 

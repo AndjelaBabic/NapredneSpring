@@ -5,6 +5,7 @@
  */
 package com.nst.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -58,6 +59,7 @@ public class Board implements Serializable {
     private Date modified;
     @OneToMany(mappedBy = "boardid")
     private List<com.nst.domain.List> listList;
+    @JsonIgnore
     @JoinColumn(name = "userid", referencedColumnName = "id")
     @ManyToOne
     private User userid;

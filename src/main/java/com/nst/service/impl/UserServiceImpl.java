@@ -8,6 +8,7 @@ package com.nst.service.impl;
 import com.nst.dao.UserDAO;
 import com.nst.domain.User;
 import com.nst.dto.UserDTO;
+import com.nst.mapper.GenericMapper;
 import com.nst.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO repository;
-
+        
     @Override
-    public User authenticate(UserDTO user) {
-       return repository.login(user.getEmail(), user.getPassword());
+    public UserDTO authenticate(UserDTO user) {
+       User result = repository.login(user.getEmail(), user.getPassword());
+       return GenericMapper.INSTANCE.userToUserDTO(result); 
     }
 
     @Override
