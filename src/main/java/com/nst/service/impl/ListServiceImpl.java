@@ -7,8 +7,11 @@ package com.nst.service.impl;
 
 import com.nst.dao.ListDAO;
 import com.nst.domain.Board;
+import com.nst.domain.Card;
+import com.nst.dto.CardDTO;
 import com.nst.dto.ListDTO;
 import com.nst.service.ListService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +27,25 @@ public class ListServiceImpl implements ListService{
     ListDAO repository; 
 
     @Override
-    public List<com.nst.domain.List> getAllListsForTheBoard(String boardid) {
+    public List<ListDTO> getAllListsForTheBoard(String boardid) {
         Board board = new Board(boardid);
-        return repository.getAllListsForTheBoard(board);
+        List<com.nst.domain.List> result = repository.getAllListsForTheBoard(board);
+        List<ListDTO> returnList = new ArrayList<>();
+        for (com.nst.domain.List list : result) {
+            ListDTO newList = new ListDTO(); 
+            newList.setListid(list.getListid());
+            newList.setTitle(list.getTitle());
+            newList.setBoardid(list.getBoardid().getBoardid());
+            String[] cardIds = new String[list.getCardList().size()];
+            int i = 0; 
+            for (Card card : list.getCardList()) {
+                cardIds[i] = card.getCardid();
+                i++; 
+            }
+            newList.setCardids(cardIds);
+            returnList.add(newList);
+        }
+        return returnList; 
     }
 
     @Override

@@ -24,5 +24,5 @@ public interface CardService {
     
     public void deleteCard(CardDTO card); 
     
-    public List<Card> getAllCards(); 
+    public List<CardDTO> getAllCards(); 
 }

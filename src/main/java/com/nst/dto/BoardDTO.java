@@ -31,7 +31,7 @@ public class BoardDTO {
     private Date modified;
     private Date created;
     private int userId;
-    private String[] lists;  
+    private String[] listIds;  
 
     public String getBoardId() {
         return boardId;
@@ -73,12 +73,12 @@ public class BoardDTO {
         this.userId = userId;
     }
 
-    public String[] getLists() {
-        return lists;
+    public String[] getListIds() {
+        return listIds;
     }
 
-    public void setLists(String[] lists) {
-        this.lists = lists;
+    public void setListIds(String[] listIds) {
+        this.listIds = listIds;
     }
 
     

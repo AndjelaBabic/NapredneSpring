@@ -18,5 +18,5 @@ public interface BoardService {
     
     public void addBoard(BoardDTO board);
     
-    public List<Board> getBoardsForUser(int userid); 
+    public List<BoardDTO> getBoardsForUser(int userid); 
 }

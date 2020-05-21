@@ -7,9 +7,11 @@ package com.nst.service.impl;
 
 import com.nst.dao.CardDAO;
 import com.nst.domain.Card;
-import com.nst.domain.List;
 import com.nst.dto.CardDTO;
+import com.nst.mapper.GenericMapper;
 import com.nst.service.CardService;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -35,7 +37,7 @@ public class CardServiceImpl implements CardService{
 
     @Override
     public void editCardList(CardDTO card) {
-        List list = new List(card.getListid()); 
+        com.nst.domain.List list = new com.nst.domain.List(card.getListid()); 
         repository.editCardList(list, card.getCardid());
     }
 
@@ -45,7 +47,16 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public java.util.List<Card> getAllCards() {
-        return repository.getAllCards();
+    public java.util.List<CardDTO> getAllCards() {
+        List<Card> result = repository.getAllCards();
+        List<CardDTO> cards = new ArrayList<>();
+        for (Card card : result) {
+            CardDTO cardDTO = new CardDTO(); 
+            cardDTO.setCardid(card.getCardid());
+            cardDTO.setTitle(card.getTitle());
+            cardDTO.setListid(card.getListid().getListid());
+            cards.add(cardDTO);
+        }
+        return cards; 
     }
 }

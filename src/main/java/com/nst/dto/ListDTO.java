@@ -22,6 +22,7 @@ public class ListDTO {
     private String listid;
     private String title;
     private String boardid;
+    private String[] cardids; 
 
     public String getListid() {
         return listid;
@@ -47,6 +48,15 @@ public class ListDTO {
         this.boardid = boardid;
     }
 
+    public String[] getCardids() {
+        return cardids;
+    }
+
+    public void setCardids(String[] cardids) {
+        this.cardids = cardids;
+    }
+
+    
     @Override
     public String toString() {
         return "ListDTO{" + "listid=" + listid + ", title=" + title + ", boardid=" + boardid + '}';

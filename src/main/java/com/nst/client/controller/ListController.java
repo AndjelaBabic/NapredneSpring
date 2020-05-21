@@ -39,7 +39,7 @@ public class ListController {
     @RequestMapping(value = "/getlists", method = RequestMethod.GET)
     public @ResponseBody
     Object getListsForTheBoard(@RequestParam String boardId) {
-        List<com.nst.domain.List> lists = service.getAllListsForTheBoard(boardId);
+        List<ListDTO> lists = service.getAllListsForTheBoard(boardId);
         return ResponseEntity.status(HttpStatus.OK).body(lists);
     }
 

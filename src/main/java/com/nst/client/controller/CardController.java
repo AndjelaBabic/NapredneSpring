@@ -37,10 +37,10 @@ public class CardController {
     @RequestMapping(value = "/getCards", method = RequestMethod.GET)
     public @ResponseBody Object getCards() {
         try {
-            List<Card> result = service.getAllCards();    
+            List<CardDTO> result = service.getAllCards();    
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error getting cards");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_GET + "card" ));
         }
     }
     

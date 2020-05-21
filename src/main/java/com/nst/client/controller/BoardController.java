@@ -40,7 +40,7 @@ public class BoardController {
     @RequestMapping(value = "/getBoards", method = RequestMethod.GET)
     public @ResponseBody Object getBoards(@RequestParam int userid) {
         try {
-            List<Board> result = service.getBoardsForUser(userid);    
+            List<BoardDTO> result = service.getBoardsForUser(userid);    
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_GET + " boards"));

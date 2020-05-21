@@ -7,7 +7,10 @@ package com.nst.client.controller;
 
 import com.nst.domain.User;
 import com.nst.dto.UserDTO;
+import com.nst.payload.ApiResponse;
 import com.nst.service.UserService;
+import com.nst.util.Messages;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +43,9 @@ public class UserController {
     public @ResponseBody Object signup(@RequestBody UserDTO userDto) {
          try {
             userService.insertUser(userDto);
-            return ResponseEntity.status(HttpStatus.OK).body("User sucessfully inserted ");
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, Messages.SUCCESS_INSERT + " user"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error while inserting User");
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(true, Messages.ERROR_INSERT + " user"));
         }
         
     }
