@@ -47,6 +47,16 @@ public class BoardController {
         }
     }
     
+    @RequestMapping(value = "/getBoardOrder", method = RequestMethod.GET)
+    public @ResponseBody Object getBoardOrder(@RequestParam int userid) {
+        try {
+            String[] result = service.getBoardOrder(userid);    
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_GET + " board order"));
+        }
+    }
+    
     @RequestMapping(value = "/addBoard", method = RequestMethod.POST)
     public @ResponseBody Object addBoard(@RequestBody BoardDTO board) {
         try {

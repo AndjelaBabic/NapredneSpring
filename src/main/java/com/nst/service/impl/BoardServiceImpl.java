@@ -58,5 +58,18 @@ public class BoardServiceImpl implements BoardService{
         }
            return returnList;
         }
+
+    @Override
+    public String[] getBoardOrder(int userid) {
+        User currentUser = new User(userid); 
+        List<Board> result = repository.getAllBoardsByUsedId(currentUser);
+        String[] boardIds = new String[result.size()];
+        int i = 0; 
+        for (Board board : result) {
+            boardIds[i] = board.getBoardid(); 
+            i++; 
+        }
+           return boardIds;
+        }
     
 }

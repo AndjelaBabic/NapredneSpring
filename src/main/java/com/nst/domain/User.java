@@ -50,7 +50,7 @@ public class User implements Serializable {
     @Size(max = 100)
     @Column(name = "email")
     private String email;
-    @Size(max = 100)
+    @Size(max = 50)
     @Column(name = "password")
     private String password;
     @OneToMany(mappedBy = "userid")

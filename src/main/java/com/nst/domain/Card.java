@@ -50,7 +50,7 @@ public class Card implements Serializable {
     @Size(max = 50)
     @Column(name = "title")
     private String title;
-    @Size(max = 100)
+    @Size(max = 50)
     @Column(name = "description")
     private String description;
     @Size(max = 50)

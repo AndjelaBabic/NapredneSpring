@@ -15,7 +15,7 @@ import com.nst.dto.ListDTO;
  */
 public interface ListService {
  
-    public java.util.List<ListDTO> getAllListsForTheBoard(String boardid);
+    public java.util.List<ListDTO> getAllLists();
     public void addList(ListDTO list);
     public void editListTitle(ListDTO list); 
     public void deleteList(ListDTO list); 

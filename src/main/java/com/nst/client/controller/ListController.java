@@ -38,8 +38,8 @@ public class ListController {
 
     @RequestMapping(value = "/getlists", method = RequestMethod.GET)
     public @ResponseBody
-    Object getListsForTheBoard(@RequestParam String boardId) {
-        List<ListDTO> lists = service.getAllListsForTheBoard(boardId);
+    Object getListsForTheBoard() {
+        List<ListDTO> lists = service.getAllLists();
         return ResponseEntity.status(HttpStatus.OK).body(lists);
     }
 

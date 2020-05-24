@@ -19,4 +19,6 @@ public interface BoardService {
     public void addBoard(BoardDTO board);
     
     public List<BoardDTO> getBoardsForUser(int userid); 
+    
+    public String[] getBoardOrder(int userid); 
 }

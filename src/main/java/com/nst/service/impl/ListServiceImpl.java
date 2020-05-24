@@ -27,9 +27,8 @@ public class ListServiceImpl implements ListService{
     ListDAO repository; 
 
     @Override
-    public List<ListDTO> getAllListsForTheBoard(String boardid) {
-        Board board = new Board(boardid);
-        List<com.nst.domain.List> result = repository.getAllListsForTheBoard(board);
+    public List<ListDTO> getAllLists() {
+        List<com.nst.domain.List> result = repository.findAll();
         List<ListDTO> returnList = new ArrayList<>();
         for (com.nst.domain.List list : result) {
             ListDTO newList = new ListDTO(); 
