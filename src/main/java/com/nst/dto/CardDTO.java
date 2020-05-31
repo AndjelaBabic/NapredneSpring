@@ -80,18 +80,14 @@ public class CardDTO {
         return listid;
     }
 
-    public void setListid(String listid) {
-        this.listid = listid;
+    public void setListid(List list) {
+        this.listid = list.getListid();
     }
-
+    
+    
     @Override
     public String toString() {
         return "CardDTO{" + "cardid=" + cardid + ", title=" + title + ", description=" + description + ", priority=" + priority + ", duedate=" + duedate + ", label=" + label + ", listid=" + listid + '}';
     }
-    
-    
-
-    
-    
     
 }

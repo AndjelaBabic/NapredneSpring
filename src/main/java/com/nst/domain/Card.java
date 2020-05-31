@@ -129,6 +129,10 @@ public class Card implements Serializable {
     public void setListid(List listid) {
         this.listid = listid;
     }
+    
+    public void setListid(String listid){
+        this.listid = new List(listid);
+    }
 
     @Override
     public int hashCode() {
