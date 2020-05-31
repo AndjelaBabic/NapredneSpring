@@ -37,7 +37,9 @@ public class UserDTO {
         return fullname;
     }
 
-  
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public String getEmail() {
         return email;

@@ -40,7 +40,7 @@ public class CardController {
             List<CardDTO> result = service.getAllCards();    
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_GET + "card" ));
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(false, Messages.ERROR_GET + "card" ));
         }
     }
     
@@ -51,7 +51,7 @@ public class CardController {
             service.addCard(card);    
             return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Card "+Messages.SUCCESS_INSERT ));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(true, Messages.ERROR_INSERT + "card" ));
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(true, Messages.ERROR_INSERT + "card" ));
         }
     }
     
@@ -61,7 +61,7 @@ public class CardController {
             service.editCardTitle(card);    
             return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_UPDATE + " card title"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_UPDATE + " card title"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(false, Messages.ERROR_UPDATE + " card title"));
         }
     }
     
@@ -71,7 +71,7 @@ public class CardController {
             service.editCardList(card);    
             return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_UPDATE + " card list"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_UPDATE + " card list"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(false, Messages.ERROR_UPDATE + " card list"));
         }
     }
     
@@ -81,7 +81,7 @@ public class CardController {
             service.deleteCard(card);   
               return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse((true), Messages.SUCCESS_DELETE + " card"));
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse((false), Messages.ERROR_DELETE + " card")); 
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse((false), Messages.ERROR_DELETE + " card")); 
         }
     }
 }

@@ -54,7 +54,7 @@ public class CardServiceImpl implements CardService{
             CardDTO cardDTO = new CardDTO(); 
             cardDTO.setCardid(card.getCardid());
             cardDTO.setTitle(card.getTitle());
-            cardDTO.setListid(card.getListid().getListid());
+            cardDTO.setListid(card.getListid());
             cards.add(cardDTO);
         }
         return cards; 

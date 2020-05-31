@@ -5,7 +5,9 @@
  */
 package com.nst.mapper;
 
+import com.nst.domain.Card;
 import com.nst.domain.User;
+import com.nst.dto.CardDTO;
 import com.nst.dto.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -16,5 +18,7 @@ public interface GenericMapper {
     GenericMapper INSTANCE = Mappers.getMapper(GenericMapper.class);
     
     UserDTO userToUserDTO(User User);
+    User userDTOtoUser(UserDTO userDto); 
+    CardDTO cardToCardDTO(Card card); 
 
 }
