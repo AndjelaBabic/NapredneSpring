@@ -40,7 +40,7 @@ public class CardController {
             List<CardDTO> result = service.getAllCards();    
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, Messages.ERROR_GET + "card" ));
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(false, Messages.ERROR_GET + "card" ));
         }
     }
     

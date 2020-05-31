@@ -16,5 +16,6 @@ public interface GenericMapper {
     GenericMapper INSTANCE = Mappers.getMapper(GenericMapper.class);
     
     UserDTO userToUserDTO(User User);
+    User userDTOtoUser(UserDTO userDto); 
 
 }
